@@ -15,7 +15,7 @@ info in event.
 Build the plugin. Go plugins are only supported on Linux at the current time. They must be
 compiled with the same Go version as the Beat it will be used with. Likewise this plugin
 must be compiled against the same Beat codebase version as the Beat it will be used
-with. Check Dockerfile
+with.
 
 ```
 go build -buildmode=plugin
@@ -25,6 +25,13 @@ Start a Beat with the plugin.
 
 ```
 filebeat -e --plugin ./processor-replace-linux-amd64.so
+```
+
+If using docker, you can copy across pre-built plugin and add it to your entrypoint. Check Dockerfile
+
+```
+COPY --from=hasnat/beats-processor-replace /usr/local/plugins/processor-replace-linux.so .
+CMD ["/bin/sh", "-c", "'/usr/local/bin/docker-entrypoint -e --plugin /usr/local/plugins/processor-replace-linux.so'"]
 ```
 
 Add the processor to your configuration file.

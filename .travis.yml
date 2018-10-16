@@ -6,12 +6,12 @@ services:
 
 before_install:
 - docker build -t beats-processor-replace .
-- docker create --name beats-processor-replace
-
+- docker create --name beats-processor-replace-container  beats-processor-replace
+- docker cp beats-processor-replace-container:/usr/local/plugins/processor-replace-linux.so processor-replace-linux.so
+- docker rm beats-processor-replace-container
 
 script:
-- docker cp beats-processor-replace:/usr/local/plugins/processor-replace-linux.so processor-replace-linux.so
-- docker rm beats-processor-replace
+- echo "🙆‍"
 
 
 deploy:

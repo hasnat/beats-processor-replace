@@ -1,0 +1,26 @@
+---
+sudo: required
+
+services:
+  - docker
+
+before_install:
+- docker build -t beats-processor-replace .
+- docker create --name beats-processor-replace
+
+
+script:
+- docker cp beats-processor-replace:/usr/local/plugins/processor-replace-linux.so processor-replace-linux.so
+- docker rm beats-processor-replace
+
+
+deploy:
+  provider: releases
+  api_key:
+    secure: O3i5ULvxXmv8lBwy6WBe4sG8fCis5xQf7YOxlk436ScdOPozfN/TqIDYs70qLC8Pu93LJ8+wyxbMmFubPQUFL7tnDG1kteSqy5YAk+QF3G4q/b6N7KWtNXfXfHmr38ZzgQCJDwvIIr3nGW8GYYntJkmTyc2dF9Tn0oon/KU0wvgTJr+hvHywBdAuQccQlnn5PL421PcRdJ8sjP4caWrF59EC93yDd+HT+BJEIlsOMA1HOr5MhF1PxywSHnpy2BQLc7YbXo0hhy+vgaG6sU3ZWPXV4CJ2X3MBIU+aWWGJ6EFTKYJFDgoCTrvZh96V88kC42rxEvSUfzrXt/I1AR+ppZ/tT5Wxi2DBWJyXeDwxm7SSxx8d3HnPwl049OlBZ5Y8zuoHTjqWIS8bRJs2uvk7wzJ7z/PGae+2elqYozR2pk6X4IknJPw48LNKPVGLDjyXNFraXxoHDSsk20Nug2AxY21J2WES7RomNRecjmiWECd/gs/ChzFfTyC27oJjH7trJiXyRquCgSdc7Eo3PY234KJT7c6iyLKbP9GODWgi8mbamDerdUFB42ifqToi2rzUqN5OCN8LlvxW60H5iN+OgatYIXI3nu32eUM+713RptNM/iyH3ar/eDj9LRhUDiBoR7bC4BTJKyD+6NjFT1TwYm/6DH2xLRsLC/90MRdZ9ts=
+  skip_cleanup: true
+  file:
+  - processor-replace-linux.so
+  on:
+    tags: true
+    repo: hasnat/beats-processor-replace

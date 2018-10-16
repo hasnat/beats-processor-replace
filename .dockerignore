@@ -1,0 +1,7 @@
+.dockerignore
+Dockerfile
+.travis.yml
+.git
+.gitignore
+*.so
+.idea

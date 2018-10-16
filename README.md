@@ -30,7 +30,7 @@ filebeat -e --plugin ./processor-replace-linux-amd64.so
 If using docker, you can copy across pre-built plugin and add it to your entrypoint. Check Dockerfile
 
 ```
-COPY --from=hasnat/beats-processor-replace /usr/local/plugins/processor-replace-linux.so .
+COPY --from=hasnat/beats-processor-replace /usr/local/plugins/processor-replace-linux.so /usr/local/plugins/processor-replace-linux.so
 CMD ["/bin/sh", "-c", "'/usr/local/bin/docker-entrypoint -e --plugin /usr/local/plugins/processor-replace-linux.so'"]
 ```
 

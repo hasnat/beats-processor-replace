@@ -1,0 +1,13 @@
+name: iris-flower-data-set
+filebeat.prospectors:
+  - paths:
+      - "/opt/data/iris-flower-data-set-*.tsv"
+    processors:
+    - replace:
+        field: "message"
+        find: "\t"
+        replace: ","
+
+output.console:
+  codec.format:
+    string: '%{[message]}'

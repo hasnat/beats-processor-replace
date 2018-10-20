@@ -20,11 +20,16 @@ with.
 ```
 go build -buildmode=plugin
 ```
+Run example
+```bash
+cd example
+docker-compose up
+```
 
 Start a Beat with the plugin.
 
 ```
-filebeat -e --plugin ./processor-replace-linux-amd64.so
+filebeat --plugin ./processor-replace-linux.so
 ```
 
 If using docker, you can copy across pre-built plugin and add it to your entrypoint. Check Dockerfile

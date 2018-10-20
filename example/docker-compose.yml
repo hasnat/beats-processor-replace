@@ -1,0 +1,9 @@
+version: "2.1"
+services:
+  filebeat-with-repalce:
+    #image: hasnat/beats-processor-replace
+    build: ..
+    volumes:
+      - "./config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro"
+      - "./data:/opt/data:ro"
+

@@ -77,7 +77,11 @@ processors:
 ```
 
 ## References & Thanks
-Big thanks to Andrew Kroh for example plugin implementation
-https://github.com/andrewkroh
+Big thanks to [Andrew Kroh](https://github.com/andrewkroh) for example plugins implementation
+
 https://github.com/andrewkroh/beats-processor-fingerprint
+
+https://github.com/s12v/awsbeats
+
 https://github.com/elastic/beats/issues/6760
+

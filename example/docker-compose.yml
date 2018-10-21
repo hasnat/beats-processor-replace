@@ -2,6 +2,7 @@ version: "2.1"
 services:
   filebeat-with-repalce:
     #image: hasnat/beats-processor-replace
+    #build: https://github.com/hasnat/beats-processor-replace.git
     build: ..
     volumes:
       - "./config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro"

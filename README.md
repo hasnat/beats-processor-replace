@@ -81,6 +81,33 @@ processors:
 }
 ```
 
+## Common errors
+If getting errors like, it might be image is built don different architecture than its being run on
+instead of copy so file build it on same architecture
+
+e.g. set build context to https://github.com/hasnat/beats-processor-replace.git
+```bash
+fatal error: runtime: no plugin module data
+
+goroutine 1 [running]:
+runtime.throw(0x16dbd59, 0x1e)
+...
+main.main()
+	/go/src/github.com/elastic/beats/filebeat/main.go:18 +0x2f fp=0xc42022df80 sp=0xc42022df58 pc=0x146b56f
+runtime.main()
+	/usr/local/go/src/runtime/proc.go:195 +0x226 fp=0xc42022dfe0 sp=0xc42022df80 pc=0xae2df6
+runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:2337 +0x1 fp=0xc42022dfe8 sp=0xc42022dfe0 pc=0xb12551
+goroutine 36 [syscall]:
+os/signal.signal_recv(0x17111b0)
+	/usr/local/go/src/runtime/sigqueue.go:131 +0xa6
+os/signal.loop()
+	/usr/local/go/src/os/signal/signal_unix.go:22 +0x22
+created by os/signal.init.0
+	/usr/local/go/src/os/signal/signal_unix.go:28 +0x41
+
+```
+
 ## References & Thanks
 Big thanks to [Andrew Kroh](https://github.com/andrewkroh) for example plugins implementation
 
